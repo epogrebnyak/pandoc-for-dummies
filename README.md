@@ -44,3 +44,6 @@ Probably will need help (will ask after I review https://github.com/jgm/pandoc/b
 
 Goal: Building single-script version of Pandoc for first-time learners of Haskell that 
 converts `Hello, **this beautiful world!*` form markdown to internal representation to HTML.
+
+
+Announced here: <https://discord.com/channels/701454007775920128/855117502186913794>
