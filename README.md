@@ -165,3 +165,5 @@ block1 = Block [Str "Hello", Space, Emph [Str "beautiful", Space, Str "world!"]]
 ### Need help: how does a writer work?
 
 - What part of pandoc code responsible for converting `block1` to HTML?
+- Where is it found in code?
+- How to mimic pandoc behavior in simple fucntions?
