@@ -42,8 +42,24 @@ to try dive into programming and Haskell in particular.
 
 ### pandoc is modular!
 
-Pandoc is extremely successul because it is modular - there is internal represntation of text, that "reader" modules can convert another format to, and "writer" modules can convert from. Different people can contribute to more readers and writers and enhancement of internal representation, which accelerated code developement.
+Pandoc is extremely successul because it is modular - there is internal represntation of text, 
+that "reader" modules can convert another format to, and "writer" modules can convert from.
+Different people can contribute to more readers and writers and enhancement of internal representation, 
+which accelerates code developement.
 
+Here is a piece for [pandoc package description](https://hackage.haskell.org/package/pandoc):
+
+> In contrast to most existing tools for converting Markdown to HTML, pandoc has a modular design: it consists of a set of readers, which parse text in a given format and produce a native representation of the document, and a set of writers, which convert this native representation into a target format. Thus, adding an input or output format requires only adding a reader or writer.
+
+### Focus on earlier versions of pandoc
+
+For our excercise we choose ealier version of pandoc code - version 1.0. 
+This code is more simple than latest versions - in uses less of monads
+and conceptually easier to follow. 
+
+Once you get comfortable with pandoc at this level you can progress 
+to learning latest versions of code and focus on `PandocMonad` and 
+other enhancements introduced to project in version 2.\*.
 
 ### The heart of pandoc - the type definitions
 
@@ -114,11 +130,10 @@ data Inline
 ```
 
 from `import Data.Text` we imported `Text` type used to represent just a string containing text.
-`Text` is somehow better that default `String` type, but I cannot tell you why. 
 
-#### TODO: Text
-
-Tell why is `Text` better than `String` built-in, and why we use `{-# LANGUAGE OverloadedStrings #-}`. 
+`Text` is a better type for string - it uses less memory than `String` and closer to actual
+stream of text. With `{-# LANGUAGE OverloadedStrings #-}` estensions you can use `String` and
+`Text` interchangeably. Note the 1.0 version of pandoc was still using `String`.  
 
 #### ... section continued
 
@@ -152,18 +167,29 @@ block1 :: Block
 block1 = Block [Str "Hello", Space, Emph [Str "beautiful", Space, Str "world!"]]
 ```
 
+### How does a writer work?
 
-### Advanced questions
-
-- Do Inline and Block types constrain us in document representation?
-
-### Cross-cutting questions
-
-- why is this baby example is different from real project?
-- what is a hard part in this example?
-
-### Need help: how does a writer work?
+https://hackage.haskell.org/package/pandoc-1.0/docs/src/Text-Pandoc-Writers-RST.html#blockListToRST
+https://hackage.haskell.org/package/pandoc-1.0/docs/src/Text-Pandoc-Writers-RST.html#blockToRST
 
 - What part of pandoc code responsible for converting `block1` to HTML?
 - Where is it found in code?
 - How to mimic pandoc behavior in simple fucntions?
+
+
+
+## Questions for review
+
+General:
+
+- Why looking at pandoc version 1.0 code is more simple for a learner then version 2.0?
+
+Advanced:
+
+- Do Inline and Block types constrain us in document representation?
+
+Cross-cutting questions:
+
+- why is this baby example is different from real project?
+- what is a hard part in this example?
+
